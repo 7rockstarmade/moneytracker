@@ -49,7 +49,7 @@ class OnBoardingPage extends ConsumerWidget {
               Text(
                 "Daily note your expenses to \nhelp manage money",
                 textAlign: .center,
-                style: TextStyle(color: AppColors.neutral),
+                style: TextStyle(color: AppColors.neutral1),
               ),
               Padding(
                 padding: EdgeInsetsGeometry.directional(top: 77),
