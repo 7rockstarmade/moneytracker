@@ -20,7 +20,7 @@ class BalanceCard extends ConsumerWidget {
         gradient: gradient,
         borderRadius: .circular(20),
         boxShadow: [
-          BoxShadow(color: const Color.fromARGB(24, 0, 0, 0), blurRadius: 15),
+          BoxShadow(color: const Color.fromARGB(24, 0, 0, 0), blurRadius: 12),
         ],
       ),
       child: Column(

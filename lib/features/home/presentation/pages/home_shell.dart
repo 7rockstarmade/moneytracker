@@ -5,7 +5,9 @@ import 'package:moneytracker/features/dashboard/presentation/pages/dashboard_pag
 import 'package:moneytracker/features/dashboard/presentation/widgets/balance_card.dart';
 import 'package:moneytracker/features/home/presentation/widgets/botton_navigation_bar.dart';
 import 'package:moneytracker/features/home/presentation/widgets/floating_action_button.dart';
-import 'package:moneytracker/features/settings/presentation/settings_page.dart';
+import 'package:moneytracker/features/settings/presentation/pages/settings_page.dart';
+import 'package:moneytracker/features/statistics/presentation/pages/statistics_page.dart';
+import 'package:moneytracker/features/transactions/presentation/pages/transactions_page.dart';
 
 class HomeShell extends ConsumerWidget {
   const HomeShell({super.key});
@@ -30,6 +32,7 @@ class HomeShell extends ConsumerWidget {
         child: floatingActionButton(),
       ),
       bottomNavigationBar: bottomNavigationBar(),
+      body: StatisticsPage(),
     );
   }
 }

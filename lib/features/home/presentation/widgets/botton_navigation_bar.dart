@@ -24,7 +24,7 @@ BottomAppBar bottomNavigationBar() {
             height: 30,
           ),
         ),
-        SizedBox(width: 48),
+        SizedBox(width: 70),
         IconButton(
           onPressed: () {},
           icon: SvgPicture.asset(

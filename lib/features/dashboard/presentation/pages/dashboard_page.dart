@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
 import 'package:moneytracker/features/dashboard/presentation/widgets/balance_card.dart';
+import 'package:moneytracker/features/shared/presentation/expense_list_item.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
@@ -25,7 +26,6 @@ class DashboardPage extends ConsumerWidget {
           ),
         ),
 
-        // Отступ перед данными
         const SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsetsGeometry.all(16),
@@ -42,10 +42,10 @@ class DashboardPage extends ConsumerWidget {
 
         SliverList(
           delegate: SliverChildBuilderDelegate(
-            (context, index) => ListTile(
-              title: Text('Item $index'),
-              subtitle: const Text('Some data'),
-              trailing: const Text('€12.50'),
+            (context, index) => ExpenseListItem(
+              title: "Iten $index",
+              subtitle: "Some data",
+              trailing: "€12.50",
             ),
             childCount: 30,
           ),

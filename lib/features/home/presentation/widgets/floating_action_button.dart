@@ -14,9 +14,9 @@ Material floatingActionButton() {
         customBorder: const CircleBorder(),
         onTap: () {},
         child: const SizedBox(
-          width: 70,
-          height: 70,
-          child: Icon(Icons.add, color: Colors.white, size: 36),
+          width: 80,
+          height: 80,
+          child: Icon(Icons.add, color: Colors.white, size: 40),
         ),
       ),
     ),

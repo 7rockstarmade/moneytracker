@@ -7,6 +7,6 @@ class MoneyTrackerApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp();
+    return MaterialApp(home: HomeShell());
   }
 }
