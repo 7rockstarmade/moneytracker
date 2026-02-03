@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
+import 'package:moneytracker/features/onboarding/providers/startup_provider.dart';
 
 class OnBoardingPage extends ConsumerWidget {
   const OnBoardingPage({super.key});
@@ -54,7 +56,10 @@ class OnBoardingPage extends ConsumerWidget {
               Padding(
                 padding: EdgeInsetsGeometry.directional(top: 77),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ref.read(startUpProvider.notifier).markOnBoardingSeen();
+                    if (context.mounted) context.go('/dashboard');
+                  },
                   child: Container(
                     width: 327,
                     height: 48,

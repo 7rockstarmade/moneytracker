@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
-import 'package:moneytracker/features/dashboard/presentation/pages/dashboard_page.dart';
-import 'package:moneytracker/features/dashboard/presentation/widgets/balance_card.dart';
 import 'package:moneytracker/features/home/presentation/widgets/botton_navigation_bar.dart';
 import 'package:moneytracker/features/home/presentation/widgets/floating_action_button.dart';
-import 'package:moneytracker/features/settings/presentation/pages/settings_page.dart';
-import 'package:moneytracker/features/statistics/presentation/pages/statistics_page.dart';
-import 'package:moneytracker/features/transactions/presentation/pages/transactions_page.dart';
 
 class HomeShell extends ConsumerWidget {
-  const HomeShell({super.key});
+  final Widget child;
+  final String location;
+  const HomeShell({super.key, required this.child, required this.location});
+
+  static const _titles = <String, String>{
+    '/dashboard': 'Overview',
+    '/transactions': 'Transactions',
+    '/stats': 'Stats',
+    '/settings': 'Settings',
+  };
+
+  String _locationToTitle(String loc) {
+    for (final entry in _titles.entries) {
+      if (loc.startsWith(entry.key)) return entry.value;
+    }
+    return 'Overview';
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final title = _locationToTitle(location);
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
         title: Text(
-          "Overview",
+          title,
           style: TextStyle(
             color: AppColors.neutral2,
             fontSize: 24,
@@ -31,8 +43,8 @@ class HomeShell extends ConsumerWidget {
         offset: const Offset(0, 25),
         child: floatingActionButton(),
       ),
-      bottomNavigationBar: bottomNavigationBar(),
-      body: StatisticsPage(),
+      bottomNavigationBar: AppBottomBar(location: location),
+      body: child,
     );
   }
 }

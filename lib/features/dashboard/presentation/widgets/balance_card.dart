@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
 
 class BalanceCard extends ConsumerWidget {
-  final color;
-  final gradient;
+  final Color? color;
+  final LinearGradient? gradient;
   const BalanceCard({super.key, this.color, this.gradient});
 
   @override
