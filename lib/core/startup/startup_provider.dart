@@ -12,8 +12,6 @@ class StartupState {
 class StartupController extends AsyncNotifier<StartupState> {
   @override
   Future<StartupState> build() async {
-    await HiveInit.init();
-
     final settings = Hive.box(HiveBoxes.settings);
     final seen =
         settings.get(SettingsKeys.seenOnboarding, defaultValue: false) as bool;

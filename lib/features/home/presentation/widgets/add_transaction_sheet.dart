@@ -52,7 +52,7 @@ class AddTransactionSheet extends ConsumerWidget {
                 AddTransactionFormSheet(
                   titleText: 'Add income',
                   onSubmit: (title, amount) async {
-                    repo.add(
+                    await repo.add(
                       TransactionModel(
                         amount: amount,
                         title: title,

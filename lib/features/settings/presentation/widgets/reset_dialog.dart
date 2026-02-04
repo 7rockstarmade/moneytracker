@@ -5,7 +5,7 @@ import 'package:moneytracker/core/theme/theme_provider.dart';
 import 'package:moneytracker/features/transactions/providers/transactions_provider.dart';
 
 Future<void> showResetDialog(BuildContext context, WidgetRef ref) async {
-  final isDarkMode = ref.watch(themeProvider);
+  final isDarkMode = ref.read(themeProvider);
   final textColor = isDarkMode ? Colors.white : AppColors.neutral2;
   final ok = await showDialog<bool>(
     context: context,
