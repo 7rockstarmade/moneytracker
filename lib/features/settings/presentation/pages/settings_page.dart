@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/core/theme/theme_provider.dart';
 import 'package:moneytracker/features/settings/presentation/widgets/about_us_sheet.dart';
+import 'package:moneytracker/features/settings/presentation/widgets/reset_dialog.dart';
 import 'package:moneytracker/features/settings/presentation/widgets/settings_item.dart';
 import 'package:moneytracker/features/shared/presentation/show_sheet.dart';
 
@@ -39,6 +40,9 @@ class SettingsPage extends ConsumerWidget {
             return SettingsItem(
               title: 'Reset data',
               iconPath: 'assets/icons/reset.png',
+              onTap: () {
+                showResetDialog(context, ref);
+              },
             );
           case 2:
             return SettingsItem(

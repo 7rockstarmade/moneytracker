@@ -19,14 +19,14 @@ class AboutUsSheet extends ConsumerWidget {
         children: [
           Center(child: ModalSheetLine()),
           Text(
-            "Hello",
+            "About us",
             textAlign: .center,
             style: TextStyle(color: colorText, fontWeight: .w600, fontSize: 30),
           ),
           Padding(
             padding: EdgeInsets.all(10),
             child: Text(
-              "There is some fake data about us, my github: 7rockstarmade, i make it solo",
+              "I don`t know what to write here, i`m done...",
               textAlign: .center,
               style: TextStyle(color: colorText, fontSize: 16),
             ),

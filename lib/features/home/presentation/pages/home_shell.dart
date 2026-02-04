@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
 import 'package:moneytracker/core/theme/theme_provider.dart';
-import 'package:moneytracker/features/home/presentation/widgets/botton_navigation_bar.dart';
+import 'package:moneytracker/features/home/presentation/widgets/bottom_navigation_bar.dart';
 import 'package:moneytracker/features/home/presentation/widgets/floating_action_button.dart';
 
 class HomeShell extends ConsumerWidget {
@@ -13,7 +13,7 @@ class HomeShell extends ConsumerWidget {
   static const _titles = <String, String>{
     '/dashboard': 'Overview',
     '/transactions': 'Transactions',
-    '/stats': 'Stats',
+    '/stats': 'Statistics',
     '/settings': 'Settings',
   };
 

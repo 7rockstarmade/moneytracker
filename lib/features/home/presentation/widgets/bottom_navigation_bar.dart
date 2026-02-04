@@ -48,7 +48,7 @@ class AppBottomBar extends ConsumerWidget {
           IconButton(
             onPressed: () => context.go('/transactions'),
             icon: SvgPicture.asset(
-              'assets/icons/task.svg',
+              'assets/icons/bell.svg',
               width: 30,
               height: 30,
               colorFilter: ColorFilter.mode(iconColor(1), BlendMode.srcIn),
@@ -58,7 +58,7 @@ class AppBottomBar extends ConsumerWidget {
           IconButton(
             onPressed: () => context.go('/stats'),
             icon: SvgPicture.asset(
-              'assets/icons/bell.svg',
+              'assets/icons/task.svg',
               width: 30,
               height: 30,
               colorFilter: ColorFilter.mode(iconColor(2), BlendMode.srcIn),

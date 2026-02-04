@@ -23,6 +23,10 @@ class TransactionsRepo {
 
   Future<void> deleteAt(int index) => _box.deleteAt(index);
 
+  Future<void> clearAll() async {
+    await _box.clear();
+  }
+
   double getTotalIncome() {
     return _box.values
         .where((tx) => tx.isIncome)

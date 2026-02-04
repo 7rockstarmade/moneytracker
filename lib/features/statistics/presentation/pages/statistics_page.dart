@@ -52,7 +52,7 @@ class StatisticsPage extends ConsumerWidget {
                   child: Text(
                     (count > 0)
                         ? "You've been making money using the app! Keep up the good work."
-                        : "You`re so bad now but this app was created to help you!",
+                        : "You're in the red, keep using the app to learn about the financial world.",
                     textAlign: .center,
 
                     style: TextStyle(),
