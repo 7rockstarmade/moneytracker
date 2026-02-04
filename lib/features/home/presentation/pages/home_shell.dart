@@ -41,7 +41,7 @@ class HomeShell extends ConsumerWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Transform.translate(
         offset: const Offset(0, 25),
-        child: floatingActionButton(),
+        child: floatingActionButton(context),
       ),
       bottomNavigationBar: AppBottomBar(location: location),
       body: child,

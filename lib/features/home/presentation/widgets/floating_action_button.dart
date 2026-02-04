@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
+import 'package:moneytracker/features/home/presentation/widgets/add_transaction_sheet.dart';
+import 'package:moneytracker/features/shared/presentation/show_sheet.dart';
 
-Material floatingActionButton() {
+Material floatingActionButton(BuildContext context) {
   return Material(
     shape: const CircleBorder(),
     elevation: 7,
@@ -12,7 +14,9 @@ Material floatingActionButton() {
       ),
       child: InkWell(
         customBorder: const CircleBorder(),
-        onTap: () {},
+        onTap: () {
+          showSheet(context, AddTransactionSheet());
+        },
         child: const SizedBox(
           width: 80,
           height: 80,

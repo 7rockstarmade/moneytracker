@@ -14,7 +14,8 @@ class DashboardPage extends ConsumerWidget {
         SliverToBoxAdapter(
           child: Container(
             height: 166,
-            color: AppColors.neutral3,
+
+            decoration: BoxDecoration(color: AppColors.neutral3),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsetsGeometry.all(16),
@@ -26,15 +27,27 @@ class DashboardPage extends ConsumerWidget {
           ),
         ),
 
-        const SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsetsGeometry.all(16),
-            child: Text(
-              "Latest",
-              style: TextStyle(
-                color: AppColors.neutral2,
-                fontSize: 20,
-                fontWeight: .w500,
+        SliverToBoxAdapter(
+          child: Container(
+            color: AppColors.neutral3,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.defaultBackgroundColor,
+                borderRadius: .directional(
+                  topStart: .circular(25),
+                  topEnd: .circular(25),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsetsGeometry.all(16),
+                child: Text(
+                  "Latest",
+                  style: TextStyle(
+                    color: AppColors.neutral2,
+                    fontSize: 20,
+                    fontWeight: .w500,
+                  ),
+                ),
               ),
             ),
           ),

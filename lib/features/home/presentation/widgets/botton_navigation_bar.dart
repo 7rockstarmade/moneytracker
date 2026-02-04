@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moneytracker/core/theme/app_colors.dart';
 
 class AppBottomBar extends StatelessWidget {
   const AppBottomBar({super.key, required this.location});
@@ -24,7 +25,7 @@ class AppBottomBar extends StatelessWidget {
     final currentIndex = _locationToIndex(location);
 
     Color iconColor(int index) {
-      return index == currentIndex ? Colors.black : Colors.black45;
+      return index == currentIndex ? AppColors.neutral2 : AppColors.neutral1;
     }
 
     return BottomAppBar(
