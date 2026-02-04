@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/features/home/providers/providers.dart';
+import 'package:moneytracker/features/shared/presentation/modal_sheet_line.dart';
 import 'package:moneytracker/features/shared/presentation/sheet_gradient_button.dart';
 
 class AddTransactionFormSheet extends ConsumerWidget {
@@ -23,19 +24,7 @@ class AddTransactionFormSheet extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // modal line
-          Center(
-            child: Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.black26,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-
+          Center(child: ModalSheetLine()),
           Text(
             titleText,
             textAlign: TextAlign.center,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:moneytracker/features/transactions/providers/transactions_provider.dart';
+import 'package:moneytracker/core/theme/theme_provider.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
 import 'package:moneytracker/features/dashboard/presentation/widgets/balance_card.dart';
 import 'package:moneytracker/features/shared/presentation/expense_list_item.dart';
+import 'package:moneytracker/features/transactions/providers/transactions_provider.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
@@ -13,6 +14,7 @@ class DashboardPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final repo = ref.watch(transactionsProvider);
     final dateTimeFormatter = DateFormat('dd.MM.yyyy HH:mm');
+    final isDarkTheme = ref.watch(themeProvider);
     return ValueListenableBuilder(
       valueListenable: repo.listenable(),
       builder: (context, value, child) {
@@ -23,7 +25,11 @@ class DashboardPage extends ConsumerWidget {
               child: Container(
                 height: 166,
 
-                decoration: BoxDecoration(color: AppColors.neutral3),
+                decoration: BoxDecoration(
+                  color: isDarkTheme
+                      ? Color.fromARGB(36, 55, 55, 55)
+                      : AppColors.neutral3,
+                ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsetsGeometry.all(16),
@@ -32,16 +38,21 @@ class DashboardPage extends ConsumerWidget {
                     switch (i) {
                       case 0:
                         return BalanceCard(
-                          color: Colors.white,
-                          title: "Total income",
-                          amount: repo.getTotalIncome().toString(),
+                          color: isDarkTheme
+                              ? const Color.fromARGB(255, 42, 43, 56)
+                              : Colors.white,
+                          elementColor: isDarkTheme
+                              ? Colors.white
+                              : AppColors.neutral2,
+                          title: "Total expense",
+                          amount: repo.getTotalExpense().toString(),
                         );
                       case 1:
                         return BalanceCard(
                           gradient: AppColors.bluegradient,
                           elementColor: Colors.white,
-                          title: "Total expense",
-                          amount: repo.getTotalExpense().toString(),
+                          title: "Total income",
+                          amount: repo.getTotalIncome().toString(),
                         );
                       default:
                         return SizedBox();
@@ -53,22 +64,20 @@ class DashboardPage extends ConsumerWidget {
 
             SliverToBoxAdapter(
               child: Container(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: .directional(
-                      topStart: .circular(25),
-                      topEnd: .circular(25),
-                    ),
+                decoration: BoxDecoration(
+                  borderRadius: .directional(
+                    topStart: .circular(25),
+                    topEnd: .circular(25),
                   ),
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.all(16),
-                    child: Text(
-                      "Latest",
-                      style: TextStyle(
-                        color: AppColors.neutral2,
-                        fontSize: 20,
-                        fontWeight: .w500,
-                      ),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsGeometry.all(16),
+                  child: Text(
+                    "Latest",
+                    style: TextStyle(
+                      color: isDarkTheme ? Colors.white : AppColors.neutral2,
+                      fontSize: 20,
+                      fontWeight: .w500,
                     ),
                   ),
                 ),

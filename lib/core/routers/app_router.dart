@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moneytracker/features/onboarding/presentation/pages/onboarding_page.dart';
+import 'package:moneytracker/features/onboarding/presentation/pages/splash_page.dart';
 import 'package:moneytracker/core/startup/startup_provider.dart';
 import 'package:moneytracker/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:moneytracker/features/home/presentation/pages/home_shell.dart';
-import 'package:moneytracker/features/onboarding/presentation/pages/onboarding_page.dart';
-import 'package:moneytracker/features/onboarding/presentation/pages/splash_page.dart';
 import 'package:moneytracker/features/settings/presentation/pages/settings_page.dart';
 import 'package:moneytracker/features/statistics/presentation/pages/statistics_page.dart';
 import 'package:moneytracker/features/transactions/presentation/pages/transactions_page.dart';

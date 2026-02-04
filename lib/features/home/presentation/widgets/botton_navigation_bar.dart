@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
+import 'package:moneytracker/core/theme/theme_provider.dart';
 
-class AppBottomBar extends StatelessWidget {
+class AppBottomBar extends ConsumerWidget {
   const AppBottomBar({super.key, required this.location});
 
   final String location;
@@ -21,11 +23,12 @@ class AppBottomBar extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = _locationToIndex(location);
-
+    final isDarkTheme = ref.watch(themeProvider);
+    final Color colorWhenDark = isDarkTheme ? Colors.white : AppColors.neutral2;
     Color iconColor(int index) {
-      return index == currentIndex ? AppColors.neutral2 : AppColors.neutral1;
+      return index == currentIndex ? colorWhenDark : AppColors.neutral1;
     }
 
     return BottomAppBar(

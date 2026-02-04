@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
+import 'package:moneytracker/core/theme/theme_provider.dart';
 import 'package:moneytracker/features/home/presentation/widgets/botton_navigation_bar.dart';
 import 'package:moneytracker/features/home/presentation/widgets/floating_action_button.dart';
 
@@ -26,13 +27,14 @@ class HomeShell extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final title = _locationToTitle(location);
+    final isDarkTheme = ref.watch(themeProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
         title: Text(
           title,
           style: TextStyle(
-            color: AppColors.neutral2,
+            color: isDarkTheme ? Colors.white : AppColors.neutral2,
             fontSize: 24,
             fontWeight: .w500,
           ),

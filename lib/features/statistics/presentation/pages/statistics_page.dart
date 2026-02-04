@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
+import 'package:moneytracker/core/theme/theme_provider.dart';
 import 'package:moneytracker/features/statistics/presentation/widgets/stat_circle.dart';
 import 'package:moneytracker/features/transactions/providers/transactions_provider.dart';
 
@@ -10,6 +11,7 @@ class StatisticsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final repo = ref.watch(transactionsProvider);
+    final isDarkTheme = ref.watch(themeProvider);
     return ValueListenableBuilder(
       valueListenable: repo.listenable(),
       builder: (context, value, child) {
@@ -23,7 +25,12 @@ class StatisticsPage extends ConsumerWidget {
                   children: [
                     Text(
                       "All time",
-                      style: TextStyle(color: AppColors.neutral2, fontSize: 20),
+                      style: TextStyle(
+                        color: isDarkTheme
+                            ? Color.fromARGB(255, 190, 190, 190)
+                            : AppColors.neutral2,
+                        fontSize: 20,
+                      ),
                     ),
                     Text(
                       "Expenses",
