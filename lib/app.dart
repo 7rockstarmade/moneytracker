@@ -12,6 +12,7 @@ class MoneyTrackerApp extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
+      theme: ThemeData.dark(),
     );
   }
 }

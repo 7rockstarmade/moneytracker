@@ -1,15 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moneytracker/core/startup/startup_provider.dart';
 import 'package:moneytracker/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:moneytracker/features/home/presentation/pages/home_shell.dart';
 import 'package:moneytracker/features/onboarding/presentation/pages/onboarding_page.dart';
 import 'package:moneytracker/features/onboarding/presentation/pages/splash_page.dart';
-import 'package:moneytracker/features/onboarding/providers/startup_provider.dart';
 import 'package:moneytracker/features/settings/presentation/pages/settings_page.dart';
 import 'package:moneytracker/features/statistics/presentation/pages/statistics_page.dart';
 import 'package:moneytracker/features/transactions/presentation/pages/transactions_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
+  final startup = ref.watch(startupProvider);
   return GoRouter(
     initialLocation: '/splash',
     routes: [
@@ -46,18 +47,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
     ],
     redirect: (context, state) {
-      final startup = ref.read(startUpProvider);
       final loc = state.uri.toString();
 
-      if (startup.isLoading || startup.hasError) {
-        return loc == '/splash' ? null : '/splash';
-      }
-      final seen = startup.value!.seenOnBoarding;
-      if (!seen && loc != '/onboarding' && loc != '/splash') {
-        return '/onboarding';
-      }
+      if (startup.isLoading) return loc == '/splash' ? null : '/splash';
+      if (startup.hasError) return loc == '/splash' ? null : '/splash';
 
-      if (seen && loc == '/onboarding') {
+      final seen = startup.value!.seenOnboarding;
+
+      if (!seen && loc != '/onboarding') return '/onboarding';
+
+      if (seen && (loc == '/splash' || loc == '/onboarding')) {
         return '/dashboard';
       }
 

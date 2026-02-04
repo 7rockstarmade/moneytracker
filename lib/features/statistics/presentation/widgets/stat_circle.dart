@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
 
 class StatisticsCircle extends ConsumerWidget {
-  const StatisticsCircle({super.key});
+  final String amount;
+  const StatisticsCircle({super.key, required this.amount});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,15 +19,15 @@ class StatisticsCircle extends ConsumerWidget {
         child: InkWell(
           customBorder: const CircleBorder(),
           onTap: () {},
-          child: const SizedBox(
+          child: SizedBox(
             width: 200,
             height: 200,
             child: Center(
               child: Text(
-                "+480",
+                amount,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 50,
+                  fontSize: 30,
                   fontWeight: .w600,
                 ),
               ),

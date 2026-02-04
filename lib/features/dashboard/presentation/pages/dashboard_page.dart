@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:moneytracker/features/transactions/providers/transactions_provider.dart';
 import 'package:moneytracker/core/theme/app_colors.dart';
 import 'package:moneytracker/features/dashboard/presentation/widgets/balance_card.dart';
 import 'package:moneytracker/features/shared/presentation/expense_list_item.dart';
@@ -9,63 +11,86 @@ class DashboardPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Container(
-            height: 166,
+    final repo = ref.watch(transactionsProvider);
+    final dateTimeFormatter = DateFormat('dd.MM.yyyy HH:mm');
+    return ValueListenableBuilder(
+      valueListenable: repo.listenable(),
+      builder: (context, value, child) {
+        final latest = repo.latest(10);
+        return CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Container(
+                height: 166,
 
-            decoration: BoxDecoration(color: AppColors.neutral3),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsetsGeometry.all(16),
-              itemCount: 12,
-              itemBuilder: (context, i) {
-                return BalanceCard(color: Colors.white);
-              },
-            ),
-          ),
-        ),
-
-        SliverToBoxAdapter(
-          child: Container(
-            color: AppColors.neutral3,
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.defaultBackgroundColor,
-                borderRadius: .directional(
-                  topStart: .circular(25),
-                  topEnd: .circular(25),
+                decoration: BoxDecoration(color: AppColors.neutral3),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsetsGeometry.all(16),
+                  itemCount: 2,
+                  itemBuilder: (context, i) {
+                    switch (i) {
+                      case 0:
+                        return BalanceCard(
+                          color: Colors.white,
+                          title: "Total income",
+                          amount: repo.getTotalIncome().toString(),
+                        );
+                      case 1:
+                        return BalanceCard(
+                          gradient: AppColors.bluegradient,
+                          elementColor: Colors.white,
+                          title: "Total expense",
+                          amount: repo.getTotalExpense().toString(),
+                        );
+                      default:
+                        return SizedBox();
+                    }
+                  },
                 ),
               ),
-              child: Padding(
-                padding: EdgeInsetsGeometry.all(16),
-                child: Text(
-                  "Latest",
-                  style: TextStyle(
-                    color: AppColors.neutral2,
-                    fontSize: 20,
-                    fontWeight: .w500,
+            ),
+
+            SliverToBoxAdapter(
+              child: Container(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: .directional(
+                      topStart: .circular(25),
+                      topEnd: .circular(25),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsGeometry.all(16),
+                    child: Text(
+                      "Latest",
+                      style: TextStyle(
+                        color: AppColors.neutral2,
+                        fontSize: 20,
+                        fontWeight: .w500,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
 
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => ExpenseListItem(
-              title: "Iten $index",
-              subtitle: "Some data",
-              trailing: "€12.50",
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final transaction = latest[index];
+                return ExpenseListItem(
+                  title: transaction.title,
+                  subtitle: dateTimeFormatter.format(transaction.createdAt),
+                  trailing: transaction.amount.toString(),
+                  isIncome: transaction.isIncome,
+                );
+              }, childCount: latest.length),
             ),
-            childCount: 30,
-          ),
-        ),
 
-        const SliverToBoxAdapter(child: SizedBox(height: 24)),
-      ],
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+          ],
+        );
+      },
     );
   }
 }

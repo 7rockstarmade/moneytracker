@@ -43,10 +43,13 @@ class AboutUsSheet extends ConsumerWidget {
               child: Image.asset('assets/images/us.jpg'),
             ),
           ),
-          Text(
-            "me with my friends btw",
-            textAlign: .center,
-            style: TextStyle(color: AppColors.neutral1),
+          Padding(
+            padding: const EdgeInsetsGeometry.directional(bottom: 20, top: 10),
+            child: Text(
+              "me with my friends btw",
+              textAlign: .center,
+              style: TextStyle(color: AppColors.neutral1),
+            ),
           ),
         ],
       ),

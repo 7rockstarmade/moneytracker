@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:moneytracker/features/transactions/providers/transactions_provider.dart';
 import 'package:moneytracker/features/shared/presentation/expense_list_item.dart';
 
 class TransactionsPage extends ConsumerWidget {
@@ -7,21 +8,31 @@ class TransactionsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) => ExpenseListItem(
-              title: "Iten $index",
-              subtitle: "Some data",
-              trailing: "€12.50",
-            ),
-            childCount: 30,
-          ),
-        ),
+    final repo = ref.watch(transactionsProvider);
 
-        const SliverToBoxAdapter(child: SizedBox(height: 24)),
-      ],
+    return ValueListenableBuilder(
+      valueListenable: repo.listenable(),
+
+      builder: (context, value, child) {
+        final transactions = repo.getAllSorted();
+        return CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final transaction = transactions[index];
+                return ExpenseListItem(
+                  title: transaction.title,
+                  subtitle: transaction.createdAt.toString(),
+                  trailing: transaction.amount.toString(),
+                  isIncome: transaction.isIncome,
+                );
+              }, childCount: transactions.length),
+            ),
+
+            const SliverToBoxAdapter(child: SizedBox(height: 24)),
+          ],
+        );
+      },
     );
   }
 }

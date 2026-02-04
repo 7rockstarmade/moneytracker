@@ -7,11 +7,15 @@ class BalanceCard extends ConsumerWidget {
   final Color? color;
   final Color elementColor;
   final LinearGradient? gradient;
+  final String amount;
+  final String title;
   const BalanceCard({
     super.key,
     this.color,
     this.gradient,
     this.elementColor = AppColors.neutral2,
+    required this.amount,
+    required this.title,
   });
 
   @override
@@ -39,7 +43,7 @@ class BalanceCard extends ConsumerWidget {
           Padding(
             padding: EdgeInsetsGeometry.directional(top: 8, bottom: 30),
             child: Text(
-              "Total Salary",
+              title,
               style: TextStyle(
                 fontSize: 12,
                 color: elementColor,
@@ -47,7 +51,7 @@ class BalanceCard extends ConsumerWidget {
               ),
             ),
           ),
-          Text("1234.23", style: TextStyle(color: elementColor, fontSize: 18)),
+          Text(amount, style: TextStyle(color: elementColor, fontSize: 18)),
         ],
       ),
     );

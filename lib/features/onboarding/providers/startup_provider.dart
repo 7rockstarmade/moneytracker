@@ -17,7 +17,3 @@ class StartUpNotifier extends AsyncNotifier<StartUpState> {
     state = const AsyncData(StartUpState(seenOnBoarding: true));
   }
 }
-
-final startUpProvider = AsyncNotifierProvider<StartUpNotifier, StartUpState>(
-  StartUpNotifier.new,
-);
