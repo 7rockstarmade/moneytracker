@@ -10,7 +10,6 @@ import 'package:moneytracker/features/statistics/presentation/pages/statistics_p
 import 'package:moneytracker/features/transactions/presentation/pages/transactions_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
-  final startup = ref.watch(startupProvider);
   return GoRouter(
     initialLocation: '/splash',
     routes: [

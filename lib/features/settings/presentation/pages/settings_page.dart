@@ -31,8 +31,8 @@ class SettingsPage extends ConsumerWidget {
               iconPath: 'assets/icons/moon.png',
               trailing: CupertinoSwitch(
                 value: isDarkTheme,
-                onChanged: (value) {
-                  themeState.state = value;
+                onChanged: (_) {
+                  themeState.switchTheme();
                 },
               ),
             );

@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../core/storage/hive_boxes.dart';
-import '../../core/storage/hive_init.dart';
 
 class StartupState {
   final bool seenOnboarding;
