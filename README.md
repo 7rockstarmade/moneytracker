@@ -5,7 +5,6 @@
 - State management powered by Riverpod
 - Local data storage using Hive (no internet required)
 - Supports light and dark themes
-- Clean and scalable project architecture
 
 ## Screenshots
 
@@ -42,3 +41,4 @@
   <img src="screenshots/12_dark_about_us.png" width="220"/>
 </p>
 
+P.S. - возможно, позже будут обновления, рефакторинг, баг-фиксы (если мне будет не впадлу)
