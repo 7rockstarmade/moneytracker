@@ -26,7 +26,7 @@ class AboutUsSheet extends ConsumerWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: Text(
-              "I don`t know what to write here, i`m done...",
+              "I don`t know what to write here, i`m done... made by 7rockstarmade",
               textAlign: .center,
               style: TextStyle(color: colorText, fontSize: 16),
             ),
