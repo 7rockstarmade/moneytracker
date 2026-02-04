@@ -33,7 +33,7 @@ class StatisticsPage extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      "Expenses",
+                      "Balance",
                       style: TextStyle(fontSize: 40, fontWeight: .w600),
                     ),
                   ],

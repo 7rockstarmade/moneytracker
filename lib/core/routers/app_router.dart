@@ -48,17 +48,18 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
     redirect: (context, state) {
       final loc = state.uri.toString();
+      final startup = ref.watch(startupProvider);
 
-      if (startup.isLoading) return loc == '/splash' ? null : '/splash';
-      if (startup.hasError) return loc == '/splash' ? null : '/splash';
+      if (startup.isLoading || startup.hasError) {
+        return loc == '/splash' ? null : '/splash';
+      }
+
+      if (loc == '/splash') return null;
 
       final seen = startup.value!.seenOnboarding;
 
       if (!seen && loc != '/onboarding') return '/onboarding';
-
-      if (seen && (loc == '/splash' || loc == '/onboarding')) {
-        return '/dashboard';
-      }
+      if (seen && loc == '/onboarding') return '/dashboard';
 
       return null;
     },
