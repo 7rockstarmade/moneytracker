@@ -20,6 +20,10 @@
   <img src="screenshots/05_settings.png" width="220"/>
   <img src="screenshots/06_about_us.png" width="220"/>
 </p>
+<p align="center">
+  <img src="screenshots/13_splash.png" width="220"/>
+  <img src="screenshots/14_onboarding.png" width="220"/>
+</p>
 
 - Dark Theme
 <p align="center">
@@ -31,4 +35,8 @@
   <img src="screenshots/10_dark_stats.png" width="220"/>
   <img src="screenshots/11_dark_settings.png" width="220"/>
   <img src="screenshots/12_dark_about_us.png" width="220"/>
+</p>
+<p align="center">
+  <img src="screenshots/15_dark_splash.png" width="220"/>
+  <img src="screenshots/16_dark_onboarding.png" width="220"/>
 </p>
