@@ -83,18 +83,38 @@ class DashboardPage extends ConsumerWidget {
                 ),
               ),
             ),
-
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final transaction = latest[index];
-                return ExpenseListItem(
-                  title: transaction.title,
-                  subtitle: dateTimeFormatter.format(transaction.createdAt),
-                  trailing: transaction.amount.toString(),
-                  isIncome: transaction.isIncome,
-                );
-              }, childCount: latest.length),
-            ),
+            latest.isEmpty
+                ? SliverToBoxAdapter(
+                    child: Center(
+                      child: SizedBox(
+                        width: 200,
+                        child: Text(
+                          "You don`t have any transactions",
+                          textAlign: .center,
+                          style: TextStyle(
+                            color: isDarkTheme
+                                ? Colors.white
+                                : AppColors.neutral2,
+                            fontSize: 18,
+                            fontWeight: .w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final transaction = latest[index];
+                      return ExpenseListItem(
+                        title: transaction.title,
+                        subtitle: dateTimeFormatter.format(
+                          transaction.createdAt,
+                        ),
+                        trailing: transaction.amount.toString(),
+                        isIncome: transaction.isIncome,
+                      );
+                    }, childCount: latest.length),
+                  ),
 
             const SliverToBoxAdapter(child: SizedBox(height: 24)),
           ],
